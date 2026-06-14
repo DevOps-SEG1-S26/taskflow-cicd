@@ -1,4 +1,4 @@
-name: CD - Deploy to Render
+name: CD - Redeploy Railway Docker Image
 
 on:
     push:
@@ -11,13 +11,16 @@ jobs:
         environment: development
 
         steps:
-            - name: Checkout repository
-              uses: actions/checkout@v4
-
-            - name: Deploy to Render
+            - name: Install Railway CLI
               run: |
-                  curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+                  npm install -g @railway/cli
+
+            - name: Redeploy Railway service
+              run: |
+                  railway redeploy --service ${{ secrets.RAILWAY_SERVICE_ID }} --yes
+              env:
+                  RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
 
             - name: Confirm deployment
               run: |
-                  echo "Deployment triggered successfully at $(date)"
+                  echo "Railway Docker image redeployment triggered at $(date)"
