@@ -5,9 +5,209 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Detail</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="dashboard-body">
+
+    <!-- Navigation -->
+    <nav class="top-nav">
+        <div class="brand">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+            </svg>
+            <span>TaskFlow</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Dashboard</a>
+            <a href="task-list.html">Tasks</a>
+            <a href="add-task.html">New Task</a>
+            <a href="task-detail.html" class="active">Task Detail</a>
+            <a href="about.html">About</a>
+        </div>
+        <div class="user-profile">
+            <div class="avatar" title="User Profile">U</div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+
+        <!-- Page Header -->
+        <div class="dashboard-header">
+            <div class="header-content">
+                <h1>Task Detail</h1>
+                <p>View full details of this task and manage its status.</p>
+            </div>
+            <a href="task-list.html" class="btn btn-outline">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+                Back to Tasks
+            </a>
+        </div>
+
+        <!-- Task Title & Status -->
+        <div class="card">
+            <div class="flex" style="justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px;">
+                <div>
+                    <h2 style="margin: 0 0 8px 0; font-size: 1.4rem; color: #0f172a;">Revamp Dashboard UI</h2>
+                    <p class="muted" style="margin: 0;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="display: inline; vertical-align: middle; margin-right: 4px;">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        Due: June 16, 2026 &bull; Category: UI / UX
+                    </p>
+                </div>
+                <div class="flex" style="gap: 8px; align-items: center; flex-wrap: wrap;">
+                    <span class="badge" style="background: #fef2f2; color: #dc2626;">High Priority</span>
+                    <span class="badge in-progress-badge" id="statusBadge">In Progress</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div class="card">
+            <h3 style="margin: 0 0 10px 0; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
+                letter-spacing: 0.06em; color: var(--muted);">Description</h3>
+            <p style="margin: 0; color: #334155; line-height: 1.7;">
+                Redesign the main dashboard to improve usability and visual clarity. This includes updating the
+                stats cards layout, refining typography, and ensuring full responsiveness across mobile and
+                desktop viewports. The new design should align with the updated brand guidelines and pass
+                accessibility contrast checks.
+            </p>
+        </div>
+
+        <!-- Task Info -->
+        <div class="card">
+            <h3 style="margin: 0 0 16px 0; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
+                letter-spacing: 0.06em; color: var(--muted);">Task Info</h3>
+            <div class="stack">
+                <div class="flex" style="gap: 40px; flex-wrap: wrap;">
+                    <div>
+                        <p class="muted" style="margin: 0 0 4px 0; font-size: 0.8rem;">Status</p>
+                        <span class="badge in-progress-badge" id="statusInfoBadge">In Progress</span>
+                    </div>
+                    <div>
+                        <p class="muted" style="margin: 0 0 4px 0; font-size: 0.8rem;">Priority</p>
+                        <span class="badge" style="background: #fef2f2; color: #dc2626;">High</span>
+                    </div>
+                    <div>
+                        <p class="muted" style="margin: 0 0 4px 0; font-size: 0.8rem;">Category</p>
+                        <p style="margin: 0; font-weight: 600; color: #1e293b;">UI / UX</p>
+                    </div>
+                    <div>
+                        <p class="muted" style="margin: 0 0 4px 0; font-size: 0.8rem;">Due Date</p>
+                        <p style="margin: 0; font-weight: 600; color: #1e293b;">June 16, 2026</p>
+                    </div>
+                    <div>
+                        <p class="muted" style="margin: 0 0 4px 0; font-size: 0.8rem;">Created</p>
+                        <p style="margin: 0; font-weight: 600; color: #1e293b;">June 10, 2026</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="card">
+            <h3 style="margin: 0 0 16px 0; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
+                letter-spacing: 0.06em; color: var(--muted);">Actions</h3>
+            <div class="flex" style="gap: 10px; flex-wrap: wrap;">
+                <button class="btn btn-primary" id="completeBtn" onclick="markComplete()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Mark as Complete
+                </button>
+                <a href="add-task.html" class="btn btn-outline">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    Edit Task
+                </a>
+                <button class="btn btn-outline" onclick="openDeleteConfirm()"
+                    style="color: #dc2626; border-color: #fecaca;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
+                        <path d="M10 11v6"></path>
+                        <path d="M14 11v6"></path>
+                        <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path>
+                    </svg>
+                    Delete Task
+                </button>
+            </div>
+            <p class="muted" id="feedbackMsg" style="margin: 14px 0 0 0; display: none;"></p>
+        </div>
+
+        <!-- Delete Confirmation (hidden by default) -->
+        <div class="card" id="deleteConfirm" style="display: none; border-left-color: #dc2626; background: #fff5f5;">
+            <h3 style="margin: 0 0 8px 0; color: #dc2626;">Delete this task?</h3>
+            <p class="muted" style="margin: 0 0 16px 0;">
+                This cannot be undone. <strong>"Revamp Dashboard UI"</strong> will be permanently removed.
+            </p>
+            <div class="flex" style="gap: 10px;">
+                <button class="btn btn-primary" onclick="confirmDelete()" style="background: #dc2626;">
+                    Yes, Delete
+                </button>
+                <button class="btn btn-outline" onclick="closeDeleteConfirm()">Cancel</button>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        &copy; 2026 TaskFlow &mdash; DevOps Fundamentals, Spring 2026
+    </footer>
+
+    <script>
+        function markComplete() {
+            const btn = document.getElementById('completeBtn');
+            const statusBadge = document.getElementById('statusBadge');
+            const statusInfoBadge = document.getElementById('statusInfoBadge');
+            const feedback = document.getElementById('feedbackMsg');
+
+            btn.disabled = true;
+            btn.style.opacity = '0.6';
+            btn.style.cursor = 'not-allowed';
+
+            statusBadge.className = 'badge completed-badge';
+            statusBadge.textContent = 'Completed';
+            statusInfoBadge.className = 'badge completed-badge';
+            statusInfoBadge.textContent = 'Completed';
+
+            feedback.style.display = 'block';
+            feedback.textContent = '✓ Task has been marked as complete.';
+        }
+
+        function openDeleteConfirm() {
+            document.getElementById('deleteConfirm').style.display = 'block';
+            document.getElementById('deleteConfirm').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function closeDeleteConfirm() {
+            document.getElementById('deleteConfirm').style.display = 'none';
+        }
+
+        function confirmDelete() {
+            const feedback = document.getElementById('feedbackMsg');
+            document.getElementById('deleteConfirm').style.display = 'none';
+            feedback.style.display = 'block';
+            feedback.textContent = 'Task deleted. Redirecting to task list…';
+            setTimeout(() => { window.location.href = 'task-list.html'; }, 1800);
+        }
+    </script>
 
 </body>
 
